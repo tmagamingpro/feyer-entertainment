@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] Transition transition;
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
