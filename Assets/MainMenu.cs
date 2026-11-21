@@ -9,6 +9,12 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        if (transition != null)
+        {
+            transition.MoveThenLoadScene(1);
+            return;
+        }
+
         SceneManager.LoadSceneAsync(1);
     }
 
