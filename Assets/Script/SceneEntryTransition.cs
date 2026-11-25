@@ -39,10 +39,12 @@ public class SceneEntryTransition : MonoBehaviour
         if (rectTransform != null)
         {
             tween = LeanTween.moveX(rectTransform, targetTransform.position.x, duration);
+            tween = LeanTween.moveY(rectTransform, targetTransform.position.y, duration);
         }
         else
         {
             tween = LeanTween.moveX(gameObject, targetTransform.position.x, duration);
+            tween = LeanTween.moveY(gameObject, targetTransform.position.y, duration);
         }
 
         tween.setOnComplete(() =>

@@ -41,5 +41,13 @@ public class Transition : MonoBehaviour
                 isMoving = false;
                 onComplete?.Invoke();
             });
+
+        LeanTween.moveY(gameObject, targetTransform.position.y, duration)
+            .setOnComplete(() =>
+            {
+                isMoving = false;
+                onComplete?.Invoke();
+            });
         }
+        
 }

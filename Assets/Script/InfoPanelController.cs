@@ -5,23 +5,34 @@ using TMPro;
 
 public class InfoPanelController : MonoBehaviour
 {
-    public TMP_Text descriptionText; // atau TMP_Text kalau pakai TextMeshPro
-    public string[] pages; // isi deskripsi tiap halaman
+    public static InfoPanelController Instance;
+
+    public GameObject infoPanel; 
+    public TMP_Text descriptionText; 
+    public string[] currentPages; 
 
     public GameObject buttonPrev;
     public GameObject buttonNext;
 
     private int currentPage = 0;
 
-    public void ResetToFirstPage()
+    void Awake()
     {
+        Instance = this;
+        descriptionText.raycastTarget = false;
+    }
+
+    public void ShowPanel(string[] pagesData)
+    {
+        currentPages = pagesData;
         currentPage = 0;
+        infoPanel.SetActive(true);
         UpdateText();
     }
 
     public void NextPage()
     {
-        if (currentPage < pages.Length - 1)
+        if (currentPage < currentPages.Length - 1)
         {
             currentPage++;
             UpdateText();
@@ -39,13 +50,18 @@ public class InfoPanelController : MonoBehaviour
 
     void UpdateText()
     {
-        descriptionText.text = pages[currentPage];
+        descriptionText.text = currentPages[currentPage];
         UpdateButtonVisibility();
     }
 
     void UpdateButtonVisibility()
     {
         buttonPrev.SetActive(currentPage > 0);
-        buttonNext.SetActive(currentPage < pages.Length - 1);
+        buttonNext.SetActive(currentPage < currentPages.Length - 1);
+    }
+
+        public void ClosePanel()
+    {
+        infoPanel.SetActive(false);
     }
 }

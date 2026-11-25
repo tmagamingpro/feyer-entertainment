@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TreeClick : MonoBehaviour
 {
-    public GameObject infoPanel; // drag panel UI ke sini di Inspector
-
+    public string[] pages; 
     void OnMouseDown()
     {
-        infoPanel.SetActive(true);
-        infoPanel.GetComponent<InfoPanelController>().ResetToFirstPage();
+        InfoPanelController.Instance.ShowPanel(pages);
     }
 }
